@@ -27,12 +27,6 @@
       ss = unityInstance;
       vkBridge.send("VKWebAppInit", {});
 
-      function showAd(adFormat, waterfall){
-        vkBridge.send("VKWebAppShowNativeAds", {ad_format:"interstitial"})
-.then(data => console.log(data.result))
-.catch(error => console.log(error));
-      }
-
       function sendPost(text){
           const bridge = vkBridge.default;
           vkBridge.send("VKWebAppShowWallPostBox", {
