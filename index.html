@@ -28,16 +28,9 @@
       vkBridge.send("VKWebAppInit", {});
 
       function showAd(adFormat, waterfall){
-        const bridge = vkBridge.default;
-        vkBridge.send("VKWebAppShowNativeAds", {ad_format:adFormat, use_waterfall:waterfall});
-        vkBridge.subscribe((e) => {
-        if(e.detail.type == 'VKWebAppShowNativeAdsResult' && e.detail.data.result == true) {
-            ss.SendMessage('VkBridge', 'ShowAdsResult', 'good');
-        }
-        if(e.detail.type == 'VKWebAppShowNativeAdsFailed') {
-           ss.SendMessage('VkBridge', 'ShowAdsResult', 'noGood');
-        }
-        });
+        vkBridge.send("VKWebAppShowNativeAds", {ad_format:"interstitial"})
+.then(data => console.log(data.result))
+.catch(error => console.log(error));
       }
 
       function sendPost(text){
